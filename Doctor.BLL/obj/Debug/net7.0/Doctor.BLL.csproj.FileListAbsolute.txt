@@ -1,0 +1,15 @@
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.csproj.AssemblyReference.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.AssemblyInfoInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.AssemblyInfo.cs
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.csproj.CoreCompileInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\bin\Debug\net7.0\Doctor.BLL.deps.json
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\bin\Debug\net7.0\Doctor.BLL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\bin\Debug\net7.0\Doctor.BLL.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\bin\Debug\net7.0\Doctor.DataAcsess.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\bin\Debug\net7.0\Doctor.DataAcsess.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.csproj.CopyComplete
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\refint\Doctor.BLL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\Doctor.BLL.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.BLL\obj\Debug\net7.0\ref\Doctor.BLL.dll

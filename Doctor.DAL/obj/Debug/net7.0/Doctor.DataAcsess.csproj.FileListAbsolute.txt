@@ -1,0 +1,12 @@
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.csproj.AssemblyReference.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.AssemblyInfoInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.AssemblyInfo.cs
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.csproj.CoreCompileInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DataAcsess.deps.json
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DataAcsess.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DataAcsess.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\refint\Doctor.DataAcsess.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DataAcsess.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\ref\Doctor.DataAcsess.dll

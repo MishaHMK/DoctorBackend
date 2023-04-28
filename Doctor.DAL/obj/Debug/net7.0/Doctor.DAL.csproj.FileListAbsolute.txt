@@ -1,0 +1,12 @@
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DAL.deps.json
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DAL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\bin\Debug\net7.0\Doctor.DAL.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.csproj.AssemblyReference.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.AssemblyInfoInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.AssemblyInfo.cs
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.csproj.CoreCompileInputs.cache
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\refint\Doctor.DAL.dll
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\Doctor.DAL.pdb
+C:\Users\gumen\source\repos\DoctorWebApi\Doctor.DAL\obj\Debug\net7.0\ref\Doctor.DAL.dll
