@@ -177,7 +177,6 @@ namespace Doctor.DataAcsess.Repositories
                                  .Select(c => new ReportAppointment()
                                  {
                                      Id = c.Id,
-                                     CreatorName = _db.Users.Where(x => x.Id == AdminId).Select(x => x.Name).FirstOrDefault(),
                                      PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
                                      DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault(),
                                      Title = c.Title,
