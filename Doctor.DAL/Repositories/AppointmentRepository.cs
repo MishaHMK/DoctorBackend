@@ -176,7 +176,7 @@ namespace Doctor.DataAcsess.Repositories
             var reportAppoints = _db.Appointments.Where(x => x.StartDate >= startDate && x.EndDate <= endDate)
                                  .Select(c => new ReportAppointment()
                                  {
-                                     Id = c.Id,
+                                     Id = c.Id, 
                                      PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
                                      DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault(),
                                      Title = c.Title,
