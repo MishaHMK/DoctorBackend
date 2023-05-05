@@ -12,6 +12,7 @@ using DoctorWebApi.Helper;
 using System.Web.WebPages;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Doctor.DataAcsess.Helpers;
+using System.Data;
 
 namespace Doctor.NUnit.Controllers
 {
@@ -245,6 +246,115 @@ namespace Doctor.NUnit.Controllers
         }
 
 
+        [Test]
+        public async Task EditAppointmentById_ReturnsNotFound()
+        {
+            // Arrange
+            _appointService.Setup(x => x.EditAppointmentById(It.IsAny<int>(), It.IsAny<AppointmentDTO>()))
+                           .ReturnsAsync(It.IsAny<Appointment>());
+
+            // Act
+            var result = await AppointmentController.EditAppointmentById(It.IsAny<int>(), It.IsAny<AppointmentDTO>());
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+        }
+
+        [Test]
+        public async Task EditAppointmentById_ReturnsOk()
+        {
+            // Arrange
+            var testModel = new AppointmentDTO() { Id = 1 };
+            var testApp = new Appointment();
+            _appointService.Setup(x => x.EditAppointmentById(It.IsAny<int>(), It.IsAny<AppointmentDTO>()))
+                           .ReturnsAsync(testApp);
+            var controller = AppointmentController;
+
+            // Act
+            var result = await controller.EditAppointmentById(It.IsAny<int>(), testModel);
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<OkObjectResult>(result);
+        }
+
+
+        [Test]
+        public async Task ApproveAppointmentById_ReturnsNotFound()
+        {
+            // Arrange
+            _appointService.Setup(x => x.ApproveAppointmentById(It.IsAny<int>(), It.IsAny<bool>()))
+                           .ReturnsAsync(It.IsAny<Appointment>());
+
+            // Act
+            var result = await AppointmentController.ApproveAppointmentById(It.IsAny<int>(), It.IsAny<bool>());
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<NotFoundResult>(result);
+        }
+
+        [Test]
+        public async Task ApproveAppointmentById_ReturnsOk()
+        {
+            // Arrange
+            var testModel = new AppointmentDTO() { Id = 1 };
+            var testApp = new Appointment();
+            _appointService.Setup(x => x.ApproveAppointmentById(It.IsAny<int>(), It.IsAny<bool>()))
+                           .ReturnsAsync(testApp);
+            var controller = AppointmentController;
+
+            // Act
+            var result = await AppointmentController.ApproveAppointmentById(It.IsAny<int>(), It.IsAny<bool>());
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<OkObjectResult>(result);
+        }
+
+
+        [Test]
+        public async Task DeleteAppointmentById_ReturnsOk()
+        {
+            // Arrange
+            _appointService.Setup(x => x.DeleteAppointmentById(It.IsAny<int>()));
+
+            var controller = AppointmentController;
+
+            // Act
+            var result = await AppointmentController.DeleteAppointmentById(It.IsAny<int>());
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<OkObjectResult>(result);
+        }
+
+
+        [Test]
+        public async Task GetReport_ReturnsOk()
+        {
+            // Arrange
+            _appointService.Setup(x => x.GetAppointmentsReview(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
+                           .ReturnsAsync(CreateReportList);
+
+            var controller = AppointmentController;
+
+
+            // Act
+            var result = await AppointmentController.GetReport(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>());
+
+            // Assert
+            _appointService.Verify();
+            Assert.NotNull(result);
+            Assert.IsInstanceOf<DataTable>(result);
+        }
+
 
         private AppointParams CreateAppointParams => new AppointParams()
         {
@@ -253,6 +363,8 @@ namespace Doctor.NUnit.Controllers
         };
 
        private PagedList<AppointmentDTOPage> CreatePagedList => new PagedList<AppointmentDTOPage>(CreateAppointmentDTOList, 1, 1, 1);
+
+        private List<ReportAppointment> CreateReportList => new List<ReportAppointment>();
 
         private IEnumerable<AppointmentDTOPage> CreateAppointmentDTOList => new List<AppointmentDTOPage>()
         {
