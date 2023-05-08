@@ -28,9 +28,6 @@ namespace Doctor.NUnit.Controllers
             _exportUtility = new Mock<IExportUtility>();    
         }
 
-
-
-
         private AppointmentController AppointmentController => 
         new AppointmentController(
             _appointService.Object,
@@ -147,8 +144,6 @@ namespace Doctor.NUnit.Controllers
             // Arrange
             _appointService.Setup(x => x.GetUserAppoints(It.IsAny<AppointParams>(), It.IsAny<string>()))
                            .ReturnsAsync(It.IsAny<PagedList<AppointmentDTOPage>>());
-
-
 
             // Act
             var result = await AppointmentController.GetApps(It.IsAny<AppointParams>(), It.IsAny<string>());

@@ -10,7 +10,7 @@ namespace Doctor.BLL.Interface
 {
     public interface IMessageService
     {
-        Task CreateMessage(CreateMessage createParams);
+        Task<Message> CreateMessage(CreateMessage createParams);
         Task<PagedList<MessageDTO>> GetMessages(MessageParams messageParams, string userId);
         Task<IEnumerable<MessageDTO>> GetMessagesThread(string un_send, string un_rec);
         Task<Message> GetMessage(int id);

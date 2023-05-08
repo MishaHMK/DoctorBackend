@@ -17,7 +17,7 @@ namespace Doctor.BLL.Services
             _mapper = mapper;   
         }
 
-        public async Task CreateMessage(CreateMessage createParams)
+        public async Task<Message> CreateMessage(CreateMessage createParams)
         {
             var sender = await _messageRepository.GetSender(createParams);
             var recepient = await _messageRepository.GetRecepient(createParams);
@@ -34,7 +34,9 @@ namespace Doctor.BLL.Services
                 };
 
                 _messageRepository.AddMessage(message);
+                return message;
             }
+            return null;
         }
 
         public async Task<bool> SaveAllAsync()
