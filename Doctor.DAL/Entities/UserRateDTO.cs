@@ -10,6 +10,8 @@ namespace Doctor.DataAcsess.Entities
     public class UserRateDTO : IdentityUser
     {
         public string Name { get; set; }
+        public string? Surname { get; set; }
+        public string? Fathername { get; set; }
         public string? Gender { get; set; }
         public DateTime? RegisteredOn { get; set; }
         public DateTime? LastActive { get; set; }

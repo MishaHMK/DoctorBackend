@@ -38,6 +38,8 @@ namespace DoctorWebApi.Services
                              SecurityStamp = user.SecurityStamp,
                              PhoneNumber = user.PhoneNumber,
                              Name = user.Name,
+                             Surname = user.Surname,
+                             Fathername = user.FatherName,
                              Introduction = user.Introduction,
                              LastActive = user.LastActive,
                              RegisteredOn = user.RegisteredOn,
@@ -145,6 +147,8 @@ namespace DoctorWebApi.Services
             {
                 Id = c.Id,
                 Name = c.Name,
+                Fathername = c.FatherName,
+                Surname = c.Surname,
                 Email = c.Email,
                 Introduction = c.Introduction,
                 Speciality = c.Speciality

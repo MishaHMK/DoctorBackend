@@ -26,10 +26,31 @@ namespace Doctor.DataAcsess.Interfaces
             dbSet.Remove(message);
         }
 
+        //public async Task<User?> GetSender(CreateMessage createParams)
+        //{
+        //    var sender = await _db.Users.SingleOrDefaultAsync(x => x.Name == createParams.SenderName);
+        //    if (sender != null) {
+        //        return sender;
+        //    }
+        //    return null;
+        //}
+
+        //public async Task<User?> GetRecepient(CreateMessage createParams)
+        //{
+        //    var recepient = await _db.Users.SingleOrDefaultAsync(x => x.Name == createParams.RecipientName);
+        //    if (recepient != null)
+        //    {
+        //        return recepient;
+        //    }
+        //    return null;
+        //}
+
+
         public async Task<User?> GetSender(CreateMessage createParams)
         {
-            var sender = await _db.Users.SingleOrDefaultAsync(x => x.Name == createParams.SenderName);
-            if (sender != null) {
+            var sender = await _db.Users.SingleOrDefaultAsync(x => x.Id == createParams.SenderId);
+            if (sender != null)
+            {
                 return sender;
             }
             return null;
@@ -37,13 +58,34 @@ namespace Doctor.DataAcsess.Interfaces
 
         public async Task<User?> GetRecepient(CreateMessage createParams)
         {
-            var recepient = await _db.Users.SingleOrDefaultAsync(x => x.Name == createParams.RecipientName);
+            var recepient = await _db.Users.SingleOrDefaultAsync(x => x.Id == createParams.RecipientId);
             if (recepient != null)
             {
                 return recepient;
             }
             return null;
         }
+
+        //public async Task<User?> GetSender(CreateMessage createParams)
+        //{
+        //    var sender = await _db.Users.SingleOrDefaultAsync(x => x.Id == createParams.SenderId);
+        //    if (sender != null)
+        //    {
+        //        return sender;
+        //    }
+        //    return null;
+        //}
+
+        //public async Task<User?> GetRecepient(CreateMessage createParams)
+        //{
+        //    var recepient = await _db.Users.SingleOrDefaultAsync(x => x.Id == createParams.RecipientId);
+        //    if (recepient != null)
+        //    {
+        //        return recepient;
+        //    }
+        //    return null;
+        //}
+
 
         public async Task<Message> GetMessage(int id)
         {
@@ -56,20 +98,36 @@ namespace Doctor.DataAcsess.Interfaces
             return query;
         }
 
-        public async Task<IEnumerable<Message>> GetMessageThread(string currentUserName, string recipientUserName)
+        //public async Task<IEnumerable<Message>> GetMessageThread(string currentUserName, string recipientUserName)
+        //{
+        //    var messages = await dbSet
+        //                   .Where(m => m.RecipientUserName == currentUserName &&
+        //                          m.RecepientDeleted == false &&
+        //                          m.SenderUserName == recipientUserName ||
+        //                          m.RecipientUserName == recipientUserName &&
+        //                          m.SenderUserName == currentUserName && 
+        //                          m.SenderDeleted == false)
+        //                   .OrderBy(m => m.MessageSent) 
+        //                   .ToListAsync();
+
+        //    return messages;
+        //}
+
+        public async Task<IEnumerable<Message>> GetMessageThread(string currentId, string recipientId)
         {
             var messages = await dbSet
-                           .Where(m => m.RecipientUserName == currentUserName &&
+                           .Where(m => m.RecipientId == currentId &&
                                   m.RecepientDeleted == false &&
-                                  m.SenderUserName == recipientUserName ||
-                                  m.RecipientUserName == recipientUserName &&
-                                  m.SenderUserName == currentUserName && 
+                                  m.SenderId == recipientId ||
+                                  m.RecipientId == recipientId &&
+                                  m.SenderId == currentId &&
                                   m.SenderDeleted == false)
-                           .OrderBy(m => m.MessageSent) 
+                           .OrderBy(m => m.MessageSent)
                            .ToListAsync();
 
             return messages;
         }
+
 
         public async Task<bool> SaveAllAsync()
         {

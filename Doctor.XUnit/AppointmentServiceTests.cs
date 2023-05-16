@@ -194,9 +194,10 @@ namespace Doctor.XUnit
         [Fact]
         public async Task EditAppointmentById_ReturnsAppointment()
         {
+            // Arrange
             AppointmentService appService = CreateAppointmentService();
-            var id = "29f40225-fc3b-4ee3-8758-baae8aaf4300";
 
+            //Act
             var testModel = new AppointmentDTO()
             {
                 Title = "Test",
@@ -211,6 +212,7 @@ namespace Doctor.XUnit
 
             var result = await appService.EditAppointmentById(It.IsAny<int>(), testModel);
 
+            //Assert
             Assert.NotNull(result);
             Assert.IsType<Appointment>(result);
         }

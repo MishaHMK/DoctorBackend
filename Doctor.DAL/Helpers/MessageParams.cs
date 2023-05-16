@@ -2,7 +2,6 @@
 {
     public class MessageParams
     {
-        //public string UserName { get; set; }
         public string Container { get; set; } = "Unread";
 
         private const int MaxPageSize = 50;
