@@ -21,10 +21,6 @@ namespace Doctor.DataAcsess.Repositories
             dbSet.Remove(reviewToDelete);
         }
 
-        public async Task SaveAsync()
-        {
-            await _db.SaveChangesAsync();
-        }
 
         public async Task<PagedList<ReviewDTO>> GetPagedReviewOfDoctor(ReviewParams reviewParams, string Id)
 
@@ -79,6 +75,11 @@ namespace Doctor.DataAcsess.Repositories
                                   }).SingleOrDefault();
 
             return review;
+        }
+
+        public async Task SaveAsync()
+        {
+            await _db.SaveChangesAsync();
         }
     }
 }

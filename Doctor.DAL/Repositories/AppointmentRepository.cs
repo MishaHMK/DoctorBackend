@@ -199,10 +199,14 @@ namespace Doctor.DataAcsess.Repositories
                            select new Doctor.DataAcsess.Entities.Doctor
                            {
                                Id = user.Id,
-                               Name = user.Name
+                               Name = user.Name,
+                               Fathername = user.FatherName,
+                               Surname = user.Surname
                            }
 
-                           ).ToList();
+                           )
+                           .OrderBy( x => x.Surname)    
+                           .ToList();
 
             return doctors;
         }
@@ -228,10 +232,14 @@ namespace Doctor.DataAcsess.Repositories
                              select new Patient
                              {
                                  Id = user.Id,
-                                 Name = user.Name
+                                 Name = user.Name,
+                                 Fathername = user.FatherName,
+                                 Surname = user.Surname
                              }
 
-                           ).ToList();
+                           )
+                            .OrderBy(x => x.Surname)
+                            .ToList();
 
             return patinents;
         }

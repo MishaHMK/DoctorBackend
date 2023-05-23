@@ -86,28 +86,6 @@ namespace Doctor.BLL.Services
             return _mapper.Map<IEnumerable<MessageDTO>>(messages);
         }
 
-        //public async Task<IEnumerable<MessageDTO>> GetMessagesThread(string un_send, string un_rec)
-        //{
-
-        //    var messages = await _messageRepository.GetMessageThread(un_send, un_rec);
-
-        //    var unreadMessages = messages.Where(m => m.DateRead == null &&
-        //                          m.RecipientUserName == un_send).ToList();
-
-        //    if (unreadMessages.Any())
-        //    {
-        //        foreach (var message in unreadMessages)
-        //        {
-        //            message.DateRead = DateTime.Now;
-        //        }
-
-        //        await _messageRepository.SaveAsync();
-        //    }
-
-        //    return _mapper.Map<IEnumerable<MessageDTO>>(messages);
-        //}
-
-
         public async Task<Message> GetMessage(int id)
         {
             return await _messageRepository.GetMessage(id); 
@@ -125,18 +103,5 @@ namespace Doctor.BLL.Services
 
             _messageRepository.DeleteMessage(message);
         }
-
-        //public async Task DeleteMessageAsync(int id, string un_send)
-        //{
-        //    var message = await GetMessage(id);
-
-        //    if (message.Sender.Name == un_send) message.SenderDeleted = true;
-
-        //    if (message.Recipient.Name == un_send) message.RecepientDeleted = true;
-
-        //    if (message.SenderDeleted || message.RecepientDeleted)
-
-        //        _messageRepository.DeleteMessage(message);
-        //}
     }
 }

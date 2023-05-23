@@ -124,9 +124,9 @@ namespace Doctor.NUnit.Controllers
 
 
 
-        private CreateMessage CreateMessageOk = new CreateMessage { Content = "som", RecipientName = "Mykhailo", SenderName = "Lol" };
+        private CreateMessage CreateMessageOk = new CreateMessage { Content = "som", RecipientName = "Mykhailo", SenderName = "Lol", RecipientId = "Ro", SenderId = "So" };
         private CreateMessage CreateMessageBad = new CreateMessage { Content = "som", RecipientName = "So", SenderName = "So" };
-        private CreateMessage CreateMessageNotFound = new CreateMessage { Content = "som", RecipientName = null, SenderName = "So" };
+        private CreateMessage CreateMessageNotFound = new CreateMessage { Content = "som", RecipientId = null, SenderId = "So" };
 
         private IQueryable<MessageDTO> MsgDtoQueryable => new List<MessageDTO>()
         {
