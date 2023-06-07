@@ -89,16 +89,19 @@ namespace Doctor.DataAcsess.Repositories
                                       Id = c.Id,
                                       Title = c.Title,
                                       Description = c.Description,
-                                      //StartDate = c.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                                      //EndDate = c.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),
                                       StartDate = c.StartDate,
                                       EndDate = c.EndDate,
                                       Duration = c.Duration,
                                       IsApproved = c.IsApproved,
                                       PatientId = c.PatientId,
                                       DoctorId = c.DoctorId,
+                                      PatientSurname = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Surname).FirstOrDefault(),
                                       PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
-                                      DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault()
+                                      PatientFathername = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.FatherName).FirstOrDefault(),
+                                      DoctorSurname = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Surname).FirstOrDefault(),
+                                      DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault(),
+                                      DoctorFathername = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.FatherName).FirstOrDefault(),
+                                      OfficeNumber = _db.DoctorUsers.Where(x => x.UserId == c.DoctorId).Select(x => x.OfficeNumber).FirstOrDefault()
                                   });
 
       
@@ -115,9 +118,7 @@ namespace Doctor.DataAcsess.Repositories
                     {
                         "ascend" => query.OrderBy(a => a.StartDate),
                         "descend" => query.OrderByDescending(a => a.StartDate),
-                        //  _ => throw new NotImplementedException()
                     },
-                    // _ => throw new NotImplementedException()
                 };
             }
             return await PagedList<AppointmentDTOPage>.CreateAsync(query.OrderByDescending(a => a.StartDate),
@@ -130,22 +131,25 @@ namespace Doctor.DataAcsess.Repositories
 
         {
             var query = _db.Appointments.Where(x => x.PatientId == Id)
-                                 .Select(c => new AppointmentDTOPage()
-                                 {
-                                     Id = c.Id,
-                                     Title = c.Title,
-                                     Description = c.Description,
-                                     //StartDate = c.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                                     //EndDate = c.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                                     StartDate = c.StartDate,
-                                     EndDate = c.EndDate,
-                                     Duration = c.Duration,
-                                     IsApproved = c.IsApproved,
-                                     PatientId = c.PatientId,
-                                     DoctorId = c.DoctorId,
-                                     PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
-                                     DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault()
-                                 });
+                                  .Select(c => new AppointmentDTOPage()
+                                  {
+                                      Id = c.Id,
+                                      Title = c.Title,
+                                      Description = c.Description,
+                                      StartDate = c.StartDate,
+                                      EndDate = c.EndDate,
+                                      Duration = c.Duration,
+                                      IsApproved = c.IsApproved,
+                                      PatientId = c.PatientId,
+                                      DoctorId = c.DoctorId,
+                                      PatientSurname = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Surname).FirstOrDefault(),
+                                      PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
+                                      PatientFathername = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.FatherName).FirstOrDefault(),
+                                      DoctorSurname = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Surname).FirstOrDefault(),
+                                      DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault(),
+                                      DoctorFathername = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.FatherName).FirstOrDefault(),
+                                      OfficeNumber = _db.DoctorUsers.Where(x => x.UserId == c.DoctorId).Select(x => x.OfficeNumber).FirstOrDefault()
+                                  });
 
 
             if (appointParams.Approved != null)
@@ -161,9 +165,7 @@ namespace Doctor.DataAcsess.Repositories
                     {
                         "ascend" => query.OrderBy(a => a.StartDate),
                         "descend" => query.OrderByDescending(a => a.StartDate),
-                        //  _ => throw new NotImplementedException()
                     },
-                    // _ => throw new NotImplementedException()
                 };
             }
             return await PagedList<AppointmentDTOPage>.CreateAsync(query.OrderByDescending(a => a.StartDate), 
@@ -176,9 +178,14 @@ namespace Doctor.DataAcsess.Repositories
             var reportAppoints = _db.Appointments.Where(x => x.StartDate >= startDate && x.EndDate <= endDate)
                                  .Select(c => new ReportAppointment()
                                  {
-                                     Id = c.Id, 
-                                     PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault(),
-                                     DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault(),
+                                     Id = c.Id,
+                                     PatientName = _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Surname).FirstOrDefault() + " " +
+                                                   _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.Name).FirstOrDefault() + " " +
+                                                   _db.Users.Where(x => x.Id == c.PatientId).Select(x => x.FatherName).FirstOrDefault(),
+
+                                     DoctorName = _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Surname).FirstOrDefault() + " " +
+                                                 _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.Name).FirstOrDefault() + " " +
+                                                 _db.Users.Where(x => x.Id == c.DoctorId).Select(x => x.FatherName).FirstOrDefault(),
                                      Title = c.Title,
                                      Description = c.Description,
                                      StartDate = c.StartDate.ToString("yyyy-MM-dd HH:mm"),

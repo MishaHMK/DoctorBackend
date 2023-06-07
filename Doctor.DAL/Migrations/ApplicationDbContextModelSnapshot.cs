@@ -64,6 +64,35 @@ namespace Doctor.DataAcsess.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("Doctor.DataAcsess.Entities.DoctorUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Introduction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OfficeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Speciality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("DoctorUsers");
+                });
+
             modelBuilder.Entity("Doctor.DataAcsess.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -167,8 +196,8 @@ namespace Doctor.DataAcsess.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Introduction")
-                        .HasColumnType("nvarchar(max)");
+                    //b.Property<string>("Introduction")
+                    //    .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastActive")
                         .HasColumnType("datetime2");
@@ -206,8 +235,8 @@ namespace Doctor.DataAcsess.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Speciality")
-                        .HasColumnType("nvarchar(max)");
+                    //b.Property<string>("Speciality")
+                    //    .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
@@ -365,6 +394,17 @@ namespace Doctor.DataAcsess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Doctor.DataAcsess.Entities.DoctorUser", b =>
+                {
+                    b.HasOne("Doctor.DataAcsess.Entities.User", "User")
+                        .WithOne("DoctorUser")
+                        .HasForeignKey("Doctor.DataAcsess.Entities.DoctorUser", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Doctor.DataAcsess.Entities.Message", b =>
                 {
                     b.HasOne("Doctor.DataAcsess.Entities.User", "Recipient")
@@ -437,6 +477,8 @@ namespace Doctor.DataAcsess.Migrations
 
             modelBuilder.Entity("Doctor.DataAcsess.Entities.User", b =>
                 {
+                    b.Navigation("DoctorUser");
+
                     b.Navigation("MessagesReceived");
 
                     b.Navigation("MessagesSent");

@@ -10,8 +10,9 @@ namespace Doctor.DataAcsess.Entities
         public string? Gender { get; set; }
         public DateTime? RegisteredOn { get; set; }
         public DateTime? LastActive { get; set; }
-        public string? Introduction { get; set; }
-        public string? Speciality { get; set; }
+        //public string? Introduction { get; set; }
+        //public string? Speciality { get; set; }
+        public DoctorUser? DoctorUser { get; set; }
         public List<Message>? MessagesSent { get; set; }
         public List<Message>? MessagesReceived { get; set; }
     }

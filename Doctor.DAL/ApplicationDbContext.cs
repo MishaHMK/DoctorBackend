@@ -14,6 +14,7 @@ namespace Doctor.DataAcsess
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<DoctorUser> DoctorUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,6 +29,11 @@ namespace Doctor.DataAcsess
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<User>()
+                 .HasOne(x => x.DoctorUser)
+                 .WithOne(x => x.User)
+                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

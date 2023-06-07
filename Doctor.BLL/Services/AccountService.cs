@@ -28,6 +28,7 @@ namespace DoctorWebApi.Services
             var query = (from user in _db.Users
                          join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
                          join roles in _db.Roles.Where(x => x.Name == Roles.Doctor) on userRoles.RoleId equals roles.Id
+                         join doctors in _db.DoctorUsers on user.Id equals doctors.UserId
                          select new UserRateDTO
                          {
                              Id = user.Id,
@@ -40,10 +41,12 @@ namespace DoctorWebApi.Services
                              Name = user.Name,
                              Surname = user.Surname,
                              Fathername = user.FatherName,
-                             Introduction = user.Introduction,
+                             //Introduction = user.Introduction,
+                             Introduction = doctors.Introduction,
                              LastActive = user.LastActive,
                              RegisteredOn = user.RegisteredOn,
-                             Speciality = user.Speciality,
+                             //Speciality = user.Speciality,
+                             Speciality = doctors.Speciality,
                              AverageRate = _db.Reviews.Where(x => x.DoctorId == user.Id).Select(x => x.Score).Average()
                          }
                          );
@@ -82,6 +85,12 @@ namespace DoctorWebApi.Services
             var result = await _db.Users.Where(u => u.Name== name).FirstOrDefaultAsync();
 
             return result;
+        }
+
+        public async Task AddDoc(DoctorUser newDoc)
+        {
+            _db.DoctorUsers.Add(newDoc);
+            _db.SaveChanges();
         }
 
         public async Task<List<string>> GetRoles()
@@ -143,18 +152,37 @@ namespace DoctorWebApi.Services
 
         public async Task<UserDTO> GetUserDTOById(string id)
         {
-            var user = _db.Users.Where(x => x.Id == id).Select(c => new UserDTO()
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Fathername = c.FatherName,
-                Surname = c.Surname,
-                Email = c.Email,
-                Introduction = c.Introduction,
-                Speciality = c.Speciality
-            }).SingleOrDefault();
+            //var user = _db.Users.Where(x => x.Id == id)
+            //    .Include()
+            //    .Select(c => new UserDTO()
+            //{
+            //    Id = c.Id,
+            //    Name = c.Name,
+            //    Fathername = c.FatherName,
+            //    Surname = c.Surname,
+            //    Email = c.Email,
+            //    Introduction = c.Introduction,
+            //    Speciality = c.Speciality
+            //}).SingleOrDefault();
 
-            return user;
+
+            var gotUser = (from user in _db.Users where user.Id == id
+                         join doctors in _db.DoctorUsers on user.Id equals doctors.UserId
+                         select new UserDTO
+                         {
+                             Id = user.Id,
+                             Email = user.Email,
+                             Name = user.Name,
+                             Surname = user.Surname,
+                             Fathername = user.FatherName,
+                             //Introduction = user.Introduction,
+                             Introduction = doctors.Introduction,
+                             //Speciality = user.Speciality,
+                             Speciality = doctors.Speciality,
+                         }
+                        ).SingleOrDefault();
+
+            return gotUser;
         }
 
 
@@ -187,6 +215,12 @@ namespace DoctorWebApi.Services
         public async Task<User> GetUserById(string id)
         {
             var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            return user;
+        }
+
+        public async Task<DoctorUser> GetDoctorById(string id)
+        {
+            var user = await _db.DoctorUsers.FirstOrDefaultAsync(x => x.UserId == id);
             return user;
         }
 

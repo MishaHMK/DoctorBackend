@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Doctor.BLL.Interface;
+using Doctor.DataAcsess;
 using Doctor.DataAcsess.Entities;
 using Doctor.DataAcsess.Helpers;
 using DoctorWebApi.Controllers;
@@ -21,6 +22,7 @@ namespace Doctor.NUnit.Controllers
     internal class AccountControllerTests
     {
         private readonly Mock<IAccountService> _accService;
+        private readonly Mock<ApplicationDbContext> _db;
         private readonly Mock<IEmailSender> _emailSender;
         private readonly Mock<IJWTService> _jWTManager;
         private readonly Mock<UserManager<User>> _userManager;
@@ -43,10 +45,12 @@ namespace Doctor.NUnit.Controllers
                            _contextAccessor.Object, _principalFactory.Object, null, null, null, null);
             _hostUrl = new HostUrlOptions();
             options = new Mock<IOptions<HostUrlOptions>>();
+           // _db = new Mock<ApplicationDbContext>();
         }
 
         private AccountController AccountController =>
         new AccountController(
+          //  _db.Object,
            _userManager.Object,
            _signInManager.Object,
            _emailSender.Object,

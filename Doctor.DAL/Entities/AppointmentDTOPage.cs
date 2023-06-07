@@ -12,7 +12,12 @@
         public string? PatientId { get; set; }
         public bool IsApproved { get; set; }
         public string? AdminId { get; set; }
+        public string? DoctorSurname { get; set; }
+        public string? PatientSurname { get; set; }
         public string? DoctorName { get; set; }
         public string? PatientName { get; set; }
+        public string? DoctorFathername { get; set; }
+        public string? PatientFathername { get; set; }
+        public int? OfficeNumber { get; set; }
     }
 }
