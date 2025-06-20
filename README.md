@@ -1,10 +1,6 @@
 ## **Doctor Api**
 
-Java Spring Boot backend API of online system for searching therapists and booking their services
-
-It also provides reviews system and user experince personalization (profile settings and favorites list)
-
-This is the Backend part of a team project at Mate Academy
+ASP.NET / React online system for searching doctors, make appointments, reviewing and chatting
 
 ## Here you can see the key parts of the system, crafted by my talented teammates
   - [Client part of the project (React)](https://github.com/MishaHMK/doc-client)
